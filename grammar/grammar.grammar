@@ -1,0 +1,14 @@
+Grammar = Production Production* ;
+Production = NonTerminal "=" Alternations ";" ;
+Alternations = Alternation ( "|" Alternation )* ;
+Alternation = Element Element* ;
+Element = ( "(" Alternations ")" | CharRange | Literal | NonTerminal ) Quant? ;
+Quant = "?" | "*" ;
+
+NonTerminal = NT_Char NT_Char* ;
+NT_Char = Unescaped | "_" | "'" | "$" ;
+
+Literal = "\"" ( Unescaped | Escaped )* "\"" ;
+CharRange = "[" Unescaped "-" Unescaped "]" ;
+Unescaped = [a-z] | [A-Z] | [0-9];
+Escaped = "\\n" | "\\r" | "\\t" | "\\\"" | "\\\\" ;

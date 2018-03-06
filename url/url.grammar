@@ -1,0 +1,13 @@
+alphas = [a-z] | [A-Z];
+nums = [0-9];
+alphanums = alphas | nums;
+scheme_chars = alphanums | "+" | "-" | ".";
+urlscheme = (scheme_chars scheme_chars* ":")?;
+netloc_chars = scheme_chars;
+path_chars = alphanums | "+" | "-" | "." | "/";
+query_chars = alphanums | "+" | "-" | ".";
+path = path_chars path_chars*;
+netloc = netloc_chars netloc_chars*;
+query = query_chars query_chars*;
+fragment = ( alphanums | " " ) ( alphanums | " " )*;
+url = urlscheme ("//" netloc)? (path)? ("?" query)? ("#" fragment)?;

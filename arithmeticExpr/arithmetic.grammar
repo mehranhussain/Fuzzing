@@ -1,0 +1,15 @@
+point = ".";
+e = "E";
+plus   = "+";
+minus  = "-";
+mult   = "*";
+div    = "/";
+lpar   = "(";
+rpar   = ")";
+addop  = plus | minus;
+multop = mult | div;
+fnumber = ("-"|"+")? [0-9] [0-9]* (point [0-9]*)? ( e ("-"|"+")? [0-9] [0-9]* )?;
+factor = ("-")? (fnumber | (lpar  expr  rpar));
+term = factor (multop  factor)*;
+expr = term ( addop  term )*;
+root = expr;

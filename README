@@ -1,0 +1,72 @@
+Overview
+==========
+
+This folder contains the subjects for the Security Testing lecture.
+
+Each folder contains a python file. Please call all files from the subject directory as
+
+  > python3 <subject>/<file> <inputfilr>
+
+where inputfile is the name of the input file. As an example, if the file example.a contains
+
+    1+1
+
+and you call
+
+  > python3 arithmeticExpr/arithmetic.py example.a
+
+This prints 2. If this raises an exception, you discovered a bug. E.g.
+
+  > python3 arithmeticExpr/arithmetic.py example.a
+  ZeroDivisionError: float division by zero
+
+However, if it raises a ParseException, this is not a bug, but an invalid input. 
+
+In addition to the real bugs, there are some artificial bugs in the _buggy.py file in each folder. Those are for testing whether your tool can find them. 
+
+Please read the information about the individual subjects.
+
+Subjects
+=========
+
+arithmeticExpr
+--------------
+
+Calcuate an arithmetic expression.
+
+deltaTime
+----------
+
+Transform a natural-language description of a time into a calendar date. E.g.
+
+inputFile:
+    yesterday afternoon
+
+  > python3 deltaTime/mod_deltaTime.py <inputFile>
+  (relative to 2017-02-27 12:32:59.928568)
+  ['noon', 'yesterday']
+  - absTime: 2017-02-26 12:00:00
+  - calculatedTime: 2017-02-26 12:00:00
+  - dayRef: ['yesterday']
+    - absTime: 2017-02-26 00:00:00
+    - name: yesterday
+  - name: yesterday
+  - timeOfDay: noon
+
+url
+---
+
+Split a URL into its parts. E.g.
+
+  > python3 url/urlparse.py http://www.google.de?query=bla#anchor
+  ['http', 'www.google.de', '', 'query=bla', 'anchor']
+
+dot
+---
+
+Implements a path search in a graph that is given in GraphViz Dot format. The file
+has two node names in the first two lines and a graph in the remainder.
+
+  > python3 graphviz/dot.py graphviz/example.dot
+
+which prints True, because there is a path from N5 to N3 in the example file.

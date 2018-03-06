@@ -1,0 +1,19 @@
+alphas = [a-z] | [A-Z];
+nums = [0-9];
+alphanums = alphas | nums;
+ID = alphas (alphanums | "_")*
+		 | (("-")? nums nums*)
+		 | (("-")? (nums*)? "." (nums*))
+		 | "\"" alphanums* "\"";
+a = ( ID ("=")? ID );
+attr_list = ( "[" (a ( ((";")? | (",")?) a )*)? ("]")? );
+node = ID (attr_list)?;
+subgraph = (("subgraph")? ID?)? "{" stmtList "}";
+edgeop = "--" | "->" | "<-";
+edgeRHS = edgeop ( ID | subgraph ) edgeRHS?;
+edge = (ID | subgraph) edgeRHS attr_list?;
+attr = ("graph" | "edge" | "node" ) attr_list;
+stmt = edge | attr | subgraph | a | node;
+stmtList = (stmt ";")*;
+graph = ("strict")? ( "graph" | "digraph" ) ID "{" stmtList "}";
+extGraph = ID ID graph;
