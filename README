@@ -1,7 +1,7 @@
 Overview
 ==========
 
-This folder contains the subjects for the Security Testing lecture.
+This project contains the subjects and fuzzers for the Security Testing purposes.
 
 Each folder contains a python file. Please call all files from the subject directory as
 
